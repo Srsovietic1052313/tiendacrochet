@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block titulo %}Tienda - La Tienda del Crochet{% endblock %}
+
+{% block content %}
+
+<div class="seccion-titulo" style="padding-top: 30px;">
+    <div class="subtitulo">Catálogo</div>
+    <h2>Nuestra tienda</h2>
+</div>
+
+<div class="layout-tienda">
+    <aside class="filtros">
+        <h3>Categorías</h3>
+        <ul>
+            <li><a href="{{ url_for('tienda') }}" class="{% if not categoria_actual %}activo{% endif %}">Todas</a></li>
+            {% for c in categorias %}
+            <li>
+                <a href="{{ url_for('tienda', categoria=c.id) }}"
+                   class="{% if categoria_actual|string == c.id|string %}activo{% endif %}">
+                    {{ c.nombre }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </aside>
+
+    <div class="grid-productos">
+        {% for producto in productos %}
+        <div class="tarjeta-producto animar-entrada">
+            <a href="{{ url_for('producto_detalle', id=producto.id) }}">
+                {% if producto.portada %}
+                <img src="{{ url_for('static', filename='img/productos/' + producto.portada) }}" class="imagen-producto" alt="{{ producto.nombre }}">
+                {% else %}
+                <div class="imagen-producto">🧶</div>
+                {% endif %}
+            </a>
+            <div class="info-producto">
+                <h3>{{ producto.nombre }}</h3>
+                {% if producto.num_variantes and producto.num_variantes > 0 %}
+                <p class="precio">Desde ${{ "{:,.0f}".format(producto.precio_min_variante) }} COP</p>
+                <a href="{{ url_for('producto_detalle', id=producto.id) }}" class="btn btn-pequeno" style="width: 100%; display:block; text-align:center;">Ver opciones →</a>
+                {% else %}
+                <p class="precio">${{ "{:,.0f}".format(producto.precio) }} COP</p>
+                <form action="{{ url_for('carrito_agregar', id=producto.id) }}" method="POST">
+                    <input type="hidden" name="cantidad" value="1">
+                    <button type="submit" class="btn btn-pequeno" style="width: 100%;">Agregar al carrito</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <p>No hay productos en esta categoría todavía.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

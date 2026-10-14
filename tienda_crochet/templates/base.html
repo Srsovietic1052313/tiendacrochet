@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block titulo %}La Tienda del Crochet{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+
+<body>
+
+    <div class="franja-superior">
+        ♡ Envíos a todo Colombia &nbsp;|&nbsp; Hecho a mano con amor ♡
+    </div>
+
+    <nav class="navbar">
+        <a class="logo" href="{{ url_for('inicio') }}">
+            <img src="{{ url_for('static', filename='images/logo2.jpeg') }}" alt="hero-Imagen" class="hero-img">
+            La Tienda del Crochet
+        </a>
+
+        <ul class="menu-principal">
+            <li><a href="{{ url_for('inicio') }}" class="{% if request.path == '/' %}activo{% endif %}">Inicio</a></li>
+            <li><a href="{{ url_for('tienda') }}" class="{% if request.path == '/tienda' %}activo{% endif %}">Tienda</a></li>
+            <li><a href="{{ url_for('sobre_nosotros') }}" class="{% if request.path.startswith('/sobre-nosotros') %}activo{% endif %}">Sobre Nosotros</a></li>
+            <li><a href="{{ url_for('blog') }}" class="{% if request.path.startswith('/blog') %}activo{% endif %}">Blog</a></li>
+            <li><a href="{{ url_for('contacto') }}" class="{% if request.path == '/contacto' %}activo{% endif %}">Contacto</a></li>
+        </ul>
+
+        <div class="iconos-navbar">
+            {% if session.get('usuario_id') %}
+                {% if session.get('usuario_rol') == 'admin' %}
+                    <a href="{{ url_for('admin_dashboard') }}" title="Panel admin">👤</a>
+                {% else %}
+                    <a href="{{ url_for('cliente_pedidos') }}" title="Mi cuenta">👤</a>
+                {% endif %}
+                <a href="{{ url_for('logout') }}" title="Cerrar sesión">Salir</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" title="Iniciar sesión">👤</a>
+            {% endif %}
+
+            <a class="icono-carrito" href="{{ url_for('carrito') }}" title="Carrito">
+                🛒
+                {% if carrito_cantidad and carrito_cantidad > 0 %}
+                    <span class="badge-carrito">{{ carrito_cantidad }}</span>
+                {% endif %}
+            </a>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <a class="logo" href="{{ url_for('inicio') }}">
+                    <img src="{{ url_for('static', filename='images/logo2.jpeg') }}" alt="hero-Imagen" class="hero-img">
+                    La Tienda del Crochet
+                </a>
+                <p style="color: var(--marron-suave); font-size: 0.9em; margin-top: 10px;">Amor tejido a mano.</p>
+                <div class="redes-sociales">
+                    <a href="https://api.whatsapp.com/send/?phone={{ configuracion.whatsapp }}&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 2.11.66 4.067 1.78 5.68L2.5 21.5l3.918-1.28A9.94 9.94 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12.001 2zm0 18.05a8.03 8.03 0 0 1-4.096-1.12l-.294-.174-2.925.955.958-2.85-.191-.294A8.03 8.03 0 0 1 3.95 12c0-4.44 3.612-8.05 8.05-8.05 4.44 0 8.05 3.61 8.05 8.05 0 4.44-3.61 8.05-8.05 8.05z"/></svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@latiendadelcrochet?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16.6 5.82c-.83-.9-1.29-2.08-1.29-3.32h-3.13v13.4c0 1.55-1.26 2.8-2.8 2.8-1.55 0-2.8-1.26-2.8-2.8 0-1.55 1.26-2.8 2.8-2.8.29 0 .57.04.83.13v-3.18a6.02 6.02 0 0 0-.83-.06 5.93 5.93 0 0 0-5.93 5.93 5.93 5.93 0 0 0 5.93 5.93 5.93 5.93 0 0 0 5.93-5.93V9.28a8.24 8.24 0 0 0 4.82 1.54V7.7a4.85 4.85 0 0 1-3.53-1.88z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/lacabanerio/?ref=PROFILE_EDIT_xav_ig_profile_page_web#" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/latiiendadelcrochet?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c-2.72 0-3.06.01-4.12.06-1.06.05-1.79.22-2.43.47-.66.26-1.22.6-1.77 1.16-.56.55-.9 1.11-1.16 1.77-.25.64-.42 1.37-.47 2.43C2 8.94 2 9.28 2 12s.01 3.06.06 4.12c.05 1.06.22 1.79.47 2.43.26.66.6 1.22 1.16 1.77.55.56 1.11.9 1.77 1.16.64.25 1.37.42 2.43.47C8.94 22 9.28 22 12 22s3.06-.01 4.12-.06c1.06-.05 1.79-.22 2.43-.47.66-.26 1.22-.6 1.77-1.16.56-.55.9-1.11 1.16-1.77.25-.64.42-1.37.47-2.43.05-1.06.06-1.4.06-4.12s-.01-3.06-.06-4.12c-.05-1.06-.22-1.79-.47-2.43a4.9 4.9 0 0 0-1.16-1.77 4.9 4.9 0 0 0-1.77-1.16c-.64-.25-1.37-.42-2.43-.47C15.06 2.01 14.72 2 12 2zm0 1.8c2.67 0 2.99.01 4.04.06.97.04 1.5.21 1.85.34.47.18.8.4 1.15.75.35.35.57.68.75 1.15.13.35.3.88.34 1.85.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.04.97-.21 1.5-.34 1.85-.18.47-.4.8-.75 1.15-.35.35-.68.57-1.15.75-.35.13-.88.3-1.85.34-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-.97-.04-1.5-.21-1.85-.34a3.1 3.1 0 0 1-1.15-.75 3.1 3.1 0 0 1-.75-1.15c-.13-.35-.3-.88-.34-1.85-.05-1.05-.06-1.37-.06-4.04s.01-2.99.06-4.04c.04-.97.21-1.5.34-1.85.18-.47.4-.8.75-1.15.35-.35.68-.57 1.15-.75.35-.13.88-.3 1.85-.34C9.01 3.81 9.33 3.8 12 3.8zm0 3.06a5.14 5.14 0 1 0 0 10.28 5.14 5.14 0 0 0 0-10.28zm0 8.48a3.34 3.34 0 1 1 0-6.68 3.34 3.34 0 0 1 0 6.68zm5.34-8.68a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+                    <li><a href="{{ url_for('tienda') }}">Tienda</a></li>
+                    <li><a href="{{ url_for('sobre_nosotros') }}">Sobre Nosotros</a></li>
+                    <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                    <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="{{ url_for('contacto') }}">Preguntas frecuentes</a></li>
+                    <li><a href="{{ url_for('contacto') }}">Políticas de envío</a></li>
+                    <li><a href="{{ url_for('contacto') }}">Cambios y devoluciones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <ul>
+                    <li>📞 {{ configuracion.telefono }}</li>
+                    <li>✉️ {{ configuracion.email }}</li>
+                    <li>📍 {{ configuracion.direccion }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">© 2026 La Tienda del Crochet. Todos los derechos reservados.</div>
+    </footer>
+
+    <div class="burbujas-laterales" id="burbujas-laterales">
+        <a href="https://forms.gle/ZjagavBVpFp1XfzPA" target="_blank" rel="noopener noreferrer" class="burbuja-lateral burbuja-proveedores">
+            <span class="burbuja-icono">🤝</span>
+            <span class="burbuja-texto">Encuesta Proveedores</span>
+        </a>
+        <a href="https://forms.gle/bzFdGAmr3KtF8ygP7" target="_blank" rel="noopener noreferrer" class="burbuja-lateral burbuja-clientes">
+            <span class="burbuja-icono">💬</span>
+            <span class="burbuja-texto">Encuesta Clientes</span>
+        </a>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='dinamico.js') }}"></script>
+</body>
+
+</html>

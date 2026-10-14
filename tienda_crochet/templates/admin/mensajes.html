@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block titulo %}Mensajes - Panel admin{% endblock %}
+
+{% block content %}
+
+<div class="layout-panel">
+    {% include 'admin/_sidebar.html' %}
+
+    <div class="panel-contenido">
+        <h1>Mensajes de contacto</h1>
+
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Mensaje</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for m in mensajes %}
+                    <tr>
+                        <td>{{ m.nombre }}</td>
+                        <td>{{ m.email }}</td>
+                        <td>{{ m.mensaje }}</td>
+                        <td>{{ m.fecha[:10] }}</td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="4">Todavía no hay mensajes.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

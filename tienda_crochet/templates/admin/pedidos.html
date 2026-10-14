@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block titulo %}Pedidos - Panel admin{% endblock %}
+
+{% block content %}
+
+<div class="layout-panel">
+    {% include 'admin/_sidebar.html' %}
+
+    <div class="panel-contenido">
+        <h1>Pedidos</h1>
+
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pedido</th>
+                        <th>Cliente</th>
+                        <th>Productos</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in pedidos %}
+                    <tr>
+                        <td>#{{ p.id }}</td>
+                        <td>{{ p.cliente_nombre }}<br><span style="font-size:0.8em; color: var(--marron-suave);">{{ p.cliente_email }}</span></td>
+                        <td style="max-width: 260px; white-space: normal;">{{ p.productos_resumen or '—' }}</td>
+                        <td>{{ p.fecha[:10] }}</td>
+                        <td>${{ "{:,.0f}".format(p.total) }}</td>
+                        <td>
+                            <form action="{{ url_for('admin_pedidos_estado', id=p.id) }}" method="POST" style="display:flex; gap:6px;">
+                                <select name="estado" onchange="this.form.submit()">
+                                    <option value="Pendiente" {% if p.estado == 'Pendiente' %}selected{% endif %}>Pendiente</option>
+                                    <option value="Enviado" {% if p.estado == 'Enviado' %}selected{% endif %}>Enviado</option>
+                                    <option value="Entregado" {% if p.estado == 'Entregado' %}selected{% endif %}>Entregado</option>
+                                    <option value="Cancelado" {% if p.estado == 'Cancelado' %}selected{% endif %}>Cancelado</option>
+                                </select>
+                            </form>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="6">Todavía no hay pedidos registrados.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

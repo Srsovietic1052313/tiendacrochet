@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block titulo %}Carrito - La Tienda del Crochet{% endblock %}
+
+{% block content %}
+
+<div class="contenedor-carrito">
+    <div class="seccion-titulo">
+        <div class="subtitulo">Tu selección</div>
+        <h2>Carrito de compras</h2>
+    </div>
+
+    {% if items %}
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>
+                    {{ item.producto.nombre }}
+                    {% if item.variante %}<br><span style="font-size:0.8em; color: var(--marron-suave);">Medida: {{ item.variante.medida }}</span>{% endif %}
+                </td>
+                <td>${{ "{:,.0f}".format(item.precio_unitario) }}</td>
+                <td>
+                    <form action="{{ url_for('carrito_actualizar', clave=item.clave) }}" method="POST" style="display:flex; gap:8px; align-items:center;">
+                        <input class="input-cantidad" type="number" name="cantidad" value="{{ item.cantidad }}" min="0">
+                        <button type="submit" class="btn btn-pequeno btn-secundario">Actualizar</button>
+                    </form>
+                </td>
+                <td>${{ "{:,.0f}".format(item.subtotal) }}</td>
+                <td><a href="{{ url_for('carrito_eliminar', clave=item.clave) }}" class="btn-accion btn-eliminar">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="total-carrito">Total: ${{ "{:,.0f}".format(total) }} COP</div>
+
+    <form action="{{ url_for('carrito_finalizar') }}" method="POST" style="text-align: right;">
+        <button type="submit" class="btn">Finalizar compra ✓</button>
+    </form>
+    {% if not session.get('usuario_id') %}
+        <p style="text-align:right; font-size: 0.85em; color: var(--marron-suave);">
+            Debes <a href="{{ url_for('login') }}" style="color: var(--rosa-oscuro); font-weight:600;">iniciar sesión</a> para finalizar tu compra.
+        </p>
+    {% endif %}
+
+    {% else %}
+    <p style="text-align:center; color: var(--marron-suave);">Tu carrito está vacío.</p>
+    <div style="text-align:center;">
+        <a href="{{ url_for('tienda') }}" class="btn">Ir a la tienda →</a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

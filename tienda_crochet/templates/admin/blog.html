@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block titulo %}Blog - Panel admin{% endblock %}
+
+{% block content %}
+
+<div class="layout-panel">
+    {% include 'admin/_sidebar.html' %}
+
+    <div class="panel-contenido">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <h1>Blog</h1>
+            <a href="{{ url_for('admin_blog_nuevo') }}" class="btn btn-pequeno">+ Nueva publicación</a>
+        </div>
+        <p style="color: var(--marron-suave);">
+            Cuenta cómo nació el emprendimiento, muestra el proceso de cada producto (con foto o video) y lee las opiniones que dejan tus visitantes.
+        </p>
+
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Título</th>
+                        <th>Fecha</th>
+                        <th>Video</th>
+                        <th>Opiniones</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <td>
+                            {% if post.imagen %}
+                            <img src="{{ url_for('static', filename='img/productos/' + post.imagen) }}" alt="{{ post.titulo }}"
+                                 style="width:44px; height:44px; object-fit:cover; border-radius:6px;">
+                            {% else %}
+                            <span style="font-size:1.4em;">🧵</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ post.titulo }}</td>
+                        <td>{{ post.fecha[:10] }}</td>
+                        <td>{% if post.video_archivo or post.video_url %}🎥{% else %}—{% endif %}</td>
+                        <td>{{ post.total_comentarios }}</td>
+                        <td>
+                            <div style="display:flex; gap:10px;">
+                                <a href="{{ url_for('admin_blog_editar', id=post.id) }}" class="btn-accion">Editar</a>
+                                <a href="{{ url_for('admin_blog_eliminar', id=post.id) }}" class="btn-accion btn-eliminar"
+                                   onclick="return confirm('¿Eliminar esta publicación y todas sus opiniones?')">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="6">Todavía no hay publicaciones. Crea la primera con el botón de arriba.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

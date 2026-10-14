@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block titulo %}Sobre Nosotros - La Tienda del Crochet{% endblock %}
+
+{% block content %}
+
+<section class="hero animar-entrada">
+    <div>
+        <div class="subtitulo">Sobre nosotros</div>
+        <h1>Tejemos historias,<br>creamos recuerdos ♡</h1>
+        <p>Piezas únicas, hechas con dedicación para acompañar tus mejores momentos.</p>
+    </div>
+    <img src="{{ url_for('static', filename='images/banner1.jpeg') }}" alt="hero-Imagen" class="hero-imagen">
+</section>
+
+<section class="seccion">
+    <div class="seccion-titulo animar-entrada">
+        <div class="subtitulo">Nuestra historia</div>
+        <h2>{{ contenido.historia_titulo or '¿Quiénes somos?' }}</h2>
+    </div>
+
+    {% if contenido.historia_imagen %}
+    <div class="historia-con-imagen animar-entrada">
+        <img src="{{ url_for('static', filename='img/productos/' + contenido.historia_imagen) }}" alt="{{ contenido.historia_titulo or 'Nuestra historia' }}">
+        <p style="color: var(--marron-suave); line-height: 1.8; white-space: pre-line;">{{ contenido.historia }}</p>
+    </div>
+    {% else %}
+    <p class="animar-entrada" style="max-width: 750px; margin: 0 auto; color: var(--marron-suave); line-height: 1.8; text-align: center; white-space: pre-line;">{{ contenido.historia }}</p>
+    {% endif %}
+</section>
+
+<section class="beneficios mision-vision">
+    <div class="beneficio animar-entrada">
+        <div class="icono-insignia"><span>🎯</span></div>
+        <h3>Misión</h3>
+        <p>{{ contenido.mision }}</p>
+    </div>
+    <div class="beneficio animar-entrada">
+        <div class="icono-insignia"><span>🔭</span></div>
+        <h3>Visión</h3>
+        <p>{{ contenido.vision }}</p>
+    </div>
+</section>
+
+<section class="beneficios">
+    <div class="beneficio animar-entrada">
+        <div class="icono-insignia">
+            <img src="{{ url_for('static', filename='images/iconos/hecho-a-mano.png') }}" alt="Hecho a mano">
+        </div>
+        <h3>Hecho a mano</h3>
+        <p>Cada pieza es única y especial.</p>
+    </div>
+    <div class="beneficio animar-entrada">
+        <div class="icono-insignia">
+            <img src="{{ url_for('static', filename='images/iconos/materiales-calidad.png') }}" alt="Materiales de calidad">
+        </div>
+        <h3>Materiales de calidad</h3>
+        <p>Utilizamos hilos premium y sostenibles.</p>
+    </div>
+    <div class="beneficio animar-entrada">
+        <div class="icono-insignia">
+            <img src="{{ url_for('static', filename='images/iconos/personalizados.png') }}" alt="Personalizados">
+        </div>
+        <h3>Personalizados</h3>
+        <p>Creamos piezas únicas para ti.</p>
+    </div>
+    <div class="beneficio animar-entrada">
+        <div class="icono-insignia">
+            <img src="{{ url_for('static', filename='images/iconos/envios-seguros.png') }}" alt="Envíos seguros">
+        </div>
+        <h3>Envíos seguros</h3>
+        <p>Llegamos a todo Colombia.</p>
+    </div>
+</section>
+
+<section class="cta-personalizados animar-entrada">
+    <div>
+        <h2>¿Quieres saber más?</h2>
+        <p>Escríbenos y con gusto resolvemos tus dudas.</p>
+        <a href="{{ url_for('contacto') }}" class="btn">Contáctanos →</a>
+    </div>
+    <div style="font-size: 4em;">💗</div>
+</section>
+
+{% endblock %}
