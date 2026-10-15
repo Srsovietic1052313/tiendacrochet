@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block titulo %}Productos - Panel admin{% endblock %}
+
+{% block content %}
+
+<div class="layout-panel">
+    {% include 'admin/_sidebar.html' %}
+
+    <div class="panel-contenido">
+        <h1>Productos</h1>
+        <a href="{{ url_for('admin_productos_nuevo') }}" class="btn-nuevo">+ Nuevo producto</a>
+
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Destacado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in productos %}
+                    <tr>
+                        <td>
+                            {% if p.portada %}
+                            <img src="{{ url_for('static', filename='img/productos/' + p.portada) }}" alt="{{ p.nombre }}"
+                                 style="width: 44px; height: 44px; object-fit: cover; border-radius: 6px;">
+                            {% else %}
+                            <span style="font-size: 1.4em;">🧶</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ p.id }}</td>
+                        <td>{{ p.nombre }}</td>
+                        <td>{{ p.categoria_nombre }}</td>
+                        <td>
+                            {% if p.num_variantes and p.num_variantes > 0 %}
+                                Desde ${{ "{:,.0f}".format(p.precio_min_variante) }}
+                            {% else %}
+                                ${{ "{:,.0f}".format(p.precio) }}
+                            {% endif %}
+                        </td>
+                        <td>{{ p.stock }}</td>
+                        <td>{{ "Sí" if p.destacado else "No" }}</td>
+                        <td>
+                            <div class="acciones">
+                                <a href="{{ url_for('admin_productos_editar', id=p.id) }}" class="btn-accion btn-editar">Editar</a>
+                                <a href="{{ url_for('admin_productos_eliminar', id=p.id) }}" class="btn-accion btn-eliminar"
+                                   onclick="return confirm('¿Seguro que deseas eliminar este producto?');">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+<aside class="panel-lateral">
+    <h3>Administración</h3>
+    <a href="{{ url_for('admin_dashboard') }}" class="{% if request.endpoint == 'admin_dashboard' %}activo{% endif %}">Resumen</a>
+    <a href="{{ url_for('admin_productos') }}" class="{% if request.endpoint in ['admin_productos', 'admin_productos_nuevo', 'admin_productos_editar'] %}activo{% endif %}">Productos</a>
+    <a href="{{ url_for('admin_pedidos') }}" class="{% if request.endpoint == 'admin_pedidos' %}activo{% endif %}">Pedidos</a>
+    <a href="{{ url_for('admin_sobre_nosotros') }}" class="{% if request.endpoint == 'admin_sobre_nosotros' %}activo{% endif %}">Sobre Nosotros</a>
+    <a href="{{ url_for('admin_video') }}" class="{% if request.endpoint == 'admin_video' %}activo{% endif %}">Video de inicio</a>
+    <a href="{{ url_for('admin_blog') }}" class="{% if request.endpoint in ['admin_blog', 'admin_blog_nuevo', 'admin_blog_editar'] %}activo{% endif %}">Blog</a>
+    <a href="{{ url_for('admin_encuestas') }}" class="{% if request.endpoint == 'admin_encuestas' %}activo{% endif %}">Encuestas</a>
+    <a href="{{ url_for('admin_proveedores') }}" class="{% if request.endpoint == 'admin_proveedores' %}activo{% endif %}">Proveedores</a>
+    <a href="{{ url_for('admin_configuracion') }}" class="{% if request.endpoint == 'admin_configuracion' %}activo{% endif %}">Mapa y contacto</a>
+    <a href="{{ url_for('admin_mensajes') }}" class="{% if request.endpoint == 'admin_mensajes' %}activo{% endif %}">Mensajes</a>
+    <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+</aside>

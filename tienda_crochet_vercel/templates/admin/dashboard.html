@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block titulo %}Panel admin - La Tienda del Crochet{% endblock %}
+
+{% block content %}
+
+<div class="layout-panel">
+    {% include 'admin/_sidebar.html' %}
+
+    <div class="panel-contenido">
+        <h1>Hola, {{ session.get('usuario_nombre') }} 👋</h1>
+
+        <div class="tarjetas-resumen">
+            <div class="tarjeta-resumen">
+                <div class="numero">{{ total_productos }}</div>
+                <div class="etiqueta">Productos</div>
+            </div>
+            <div class="tarjeta-resumen">
+                <div class="numero">{{ total_pedidos }}</div>
+                <div class="etiqueta">Pedidos</div>
+            </div>
+            <div class="tarjeta-resumen">
+                <div class="numero">{{ total_clientes }}</div>
+                <div class="etiqueta">Clientes</div>
+            </div>
+            <div class="tarjeta-resumen">
+                <div class="numero">{{ mensajes_sin_leer }}</div>
+                <div class="etiqueta">Mensajes sin leer</div>
+            </div>
+            <div class="tarjeta-resumen">
+                <div class="numero">{{ total_encuestas }}</div>
+                <div class="etiqueta">Respuestas de encuesta</div>
+            </div>
+            <div class="tarjeta-resumen">
+                <div class="numero">{{ total_proveedores }}</div>
+                <div class="etiqueta">Proveedores registrados</div>
+            </div>
+        </div>
+
+        <p style="color: var(--marron-suave);">Usa el menú de la izquierda para gestionar productos, pedidos, el contenido de "Sobre Nosotros", las encuestas, los proveedores, el mapa y los datos de contacto.</p>
+    </div>
+</div>
+
+{% endblock %}

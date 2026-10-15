@@ -1,0 +1,1566 @@
+:root {
+    --rosa-clarito: #f6e4ee;
+    --rosa: #d98cae;
+    --rosa-oscuro: #c26a92;
+    --crema: #fbf6f2;
+    --marron: #5c4a3f;
+    --marron-suave: #8a7568;
+    --blanco: #ffffff;
+    --borde: #f0dde8;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--crema);
+    color: var(--marron);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img, .placeholder-img {
+    max-width: 100%;
+}
+
+.franja-superior {
+    background-color: var(--rosa-clarito);
+    text-align: center;
+    padding: 8px;
+    font-size: 0.85em;
+    color: var(--marron);
+}
+
+/* ---------- NAVBAR ---------- */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 60px;
+    background-color: var(--blanco);
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: Georgia, serif;
+    font-size: 1.2em;
+    color: var(--rosa-oscuro);
+}
+
+.logo .icono-logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rosa-clarito), var(--rosa));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+}
+
+.menu-principal {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.menu-principal a {
+    font-weight: 600;
+    color: var(--marron);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+.menu-principal a:hover,
+.menu-principal a.activo {
+    color: var(--rosa-oscuro);
+    border-bottom: 2px solid var(--rosa-oscuro);
+}
+
+.iconos-navbar {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    font-size: 1.2em;
+}
+
+.icono-carrito {
+    position: relative;
+}
+
+.badge-carrito {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background-color: var(--rosa-oscuro);
+    color: white;
+    font-size: 0.55em;
+    padding: 3px 6px;
+    border-radius: 50%;
+}
+
+/* ---------- BOTONES ---------- */
+
+.btn {
+    display: inline-block;
+    padding: 12px 26px;
+    border-radius: 30px;
+    background-color: var(--rosa-oscuro);
+    color: white;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn:hover {
+    background-color: #a8577c;
+}
+
+.btn-secundario {
+    background-color: transparent;
+    color: var(--rosa-oscuro);
+    border: 2px solid var(--rosa-oscuro);
+}
+
+.btn-secundario:hover {
+    background-color: var(--rosa-clarito);
+}
+
+.btn-pequeno {
+    padding: 6px 14px;
+    font-size: 0.85em;
+    border-radius: 20px;
+}
+
+.btn-peligro {
+    background-color: #c0392b;
+}
+
+.btn-peligro:hover {
+    background-color: #96291d;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 60px;
+    background-color: var(--rosa-clarito);
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: 2.6em;
+    color: var(--marron);
+    margin: 0 0 20px 0;
+}
+
+.hero p {
+    font-size: 1.1em;
+    color: var(--marron-suave);
+    margin-bottom: 25px;
+}
+
+.hero-imagen {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--blanco), var(--rosa-clarito) 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5em;
+    box-shadow: 0 10px 30px rgba(194, 106, 146, 0.25);
+    width: 100%;
+    object-fit: cover;
+}
+.hero-img {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--blanco), var(--rosa-clarito) 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5em;
+    box-shadow: 0 10px 30px rgba(194, 106, 146, 0.25);
+    width: 50px;
+}
+
+/* ---------- BENEFICIOS ---------- */
+
+.beneficios {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 45px 60px;
+    text-align: center;
+}
+
+.beneficios.mision-vision {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.beneficios.mision-vision .beneficio {
+    width: 320px;
+    max-width: 100%;
+}
+
+.beneficio .icono {
+    font-size: 1.8em;
+    margin-bottom: 8px;
+}
+
+.beneficio h3 {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+.beneficio p {
+    font-size: 0.85em;
+    color: var(--marron-suave);
+    margin: 0;
+}
+
+/* ---------- SECCIONES GENERALES ---------- */
+
+.seccion {
+    padding: 50px 60px;
+}
+
+.seccion-titulo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.seccion-titulo .subtitulo {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--rosa-oscuro);
+    font-size: 0.85em;
+    font-weight: 700;
+}
+
+.seccion-titulo h2 {
+    font-family: Georgia, serif;
+    font-size: 2em;
+    margin: 5px 0 0 0;
+}
+
+.sobre-nosotros {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 50px 60px;
+}
+
+.sobre-nosotros .foto-placeholder {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--rosa-clarito), #e6bcd0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4em;
+}
+
+/* ---------- GRID DE PRODUCTOS ---------- */
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.tarjeta-producto {
+    background: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.tarjeta-producto:hover {
+    box-shadow: 0 8px 20px rgba(194, 106, 146, 0.15);
+    transform: translateY(-3px);
+}
+
+.imagen-producto {
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(135deg, var(--rosa-clarito), #eccbdb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+}
+
+.info-producto {
+    padding: 15px;
+}
+
+.info-producto h3 {
+    margin: 0 0 6px 0;
+    font-size: 1em;
+}
+
+.precio {
+    color: var(--rosa-oscuro);
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.fila-producto {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ---------- TIENDA (filtros) ---------- */
+
+.layout-tienda {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 35px;
+    padding: 40px 60px;
+}
+
+.filtros h3 {
+    margin-top: 0;
+}
+
+.filtros ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filtros li {
+    margin-bottom: 10px;
+}
+
+.filtros a {
+    color: var(--marron-suave);
+}
+
+.filtros a.activo,
+.filtros a:hover {
+    color: var(--rosa-oscuro);
+    font-weight: 700;
+}
+
+/* ---------- DETALLE DE PRODUCTO ---------- */
+
+.detalle-producto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    padding: 50px 60px;
+}
+
+.detalle-producto .imagen-producto {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    font-size: 6em;
+}
+
+.detalle-producto h1 {
+    font-family: Georgia, serif;
+}
+
+.detalle-producto .precio {
+    font-size: 1.6em;
+}
+
+/* ---------- CARRITO ---------- */
+
+.contenedor-carrito {
+    padding: 50px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--blanco);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: var(--rosa-clarito);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--borde);
+}
+
+th {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    color: var(--rosa-oscuro);
+}
+
+.input-cantidad {
+    width: 60px;
+    padding: 6px;
+    border: 1px solid var(--borde);
+    border-radius: 5px;
+}
+
+.total-carrito {
+    text-align: right;
+    font-size: 1.3em;
+    margin: 20px 0;
+    font-weight: 700;
+    color: var(--rosa-oscuro);
+}
+
+/* ---------- BLOG ---------- */
+
+.grid-blog {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.tarjeta-blog {
+    background: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+}
+
+.imagen-blog {
+    height: 160px;
+    width: 100%;
+    background: linear-gradient(135deg, #e6bcd0, var(--rosa-clarito));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    object-fit: cover;
+}
+
+.info-blog {
+    padding: 18px;
+}
+
+.fecha-blog {
+    font-size: 0.8em;
+    color: var(--marron-suave);
+}
+
+.post-blog {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 50px 30px;
+}
+
+.post-blog h1 {
+    font-family: Georgia, serif;
+}
+
+.post-blog .contenido {
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+/* ---------- FORMULARIOS ---------- */
+
+.contenedor-formulario {
+    max-width: 480px;
+    margin: 50px auto;
+    background: var(--blanco);
+    padding: 35px 40px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.contenedor-formulario h1 {
+    font-family: Georgia, serif;
+    text-align: center;
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    font-family: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--rosa);
+    box-shadow: 0 0 0 3px rgba(217, 140, 174, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.checkbox-linea {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.checkbox-linea input {
+    width: auto;
+    margin-top: 0;
+}
+
+.mensaje-error {
+    background-color: #fdecea;
+    color: #c0392b;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    margin-top: 15px;
+}
+
+.mensaje-exito {
+    background-color: #eafaf1;
+    color: #1e8449;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    margin-top: 15px;
+}
+
+.enlace-secundario {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 0.9em;
+    color: var(--marron-suave);
+}
+
+.enlace-secundario a {
+    color: var(--rosa-oscuro);
+    font-weight: 600;
+}
+
+/* ---------- CTA PERSONALIZADOS ---------- */
+
+.cta-personalizados {
+    margin: 0 60px 50px 60px;
+    background-color: var(--rosa-clarito);
+    border-radius: 16px;
+    padding: 40px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cta-personalizados h2 {
+    font-family: Georgia, serif;
+    margin: 0 0 8px 0;
+}
+
+.cta-personalizados p {
+    margin: 0 0 15px 0;
+    color: var(--marron-suave);
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    background-color: var(--rosa-clarito);
+    padding: 50px 60px 25px 60px;
+    margin-top: 40px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.footer-grid h4 {
+    color: var(--rosa-oscuro);
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+
+.footer-grid ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-grid li {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.footer-grid li a:hover {
+    color: var(--rosa-oscuro);
+}
+
+.redes-sociales {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.redes-sociales a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: var(--rosa-oscuro);
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.redes-sociales a svg {
+    width: 18px;
+    height: 18px;
+}
+
+.redes-sociales a:hover {
+    background-color: var(--rosa-oscuro);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--borde);
+    font-size: 0.8em;
+    color: var(--marron-suave);
+}
+
+/* ---------- PANEL ADMIN / CLIENTE ---------- */
+
+.layout-panel {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 70vh;
+}
+
+.panel-lateral {
+    background-color: var(--blanco);
+    border-right: 1px solid var(--borde);
+    padding: 30px 20px;
+}
+
+.panel-lateral h3 {
+    color: var(--rosa-oscuro);
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+.panel-lateral a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    color: var(--marron);
+}
+
+.panel-lateral a:hover,
+.panel-lateral a.activo {
+    background-color: var(--rosa-clarito);
+    color: var(--rosa-oscuro);
+    font-weight: 600;
+}
+
+.panel-contenido {
+    padding: 35px 45px;
+}
+
+.panel-contenido h1 {
+    font-family: Georgia, serif;
+}
+
+.tarjetas-resumen {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.tarjeta-resumen {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.tarjeta-resumen .numero {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--rosa-oscuro);
+}
+
+.tarjeta-resumen .etiqueta {
+    color: var(--marron-suave);
+    font-size: 0.85em;
+}
+
+.tabla-contenedor {
+    background: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+}
+
+.acciones {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-accion {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-editar {
+    background-color: #eaf2fb;
+    color: #2471a3;
+}
+
+.btn-eliminar {
+    background-color: #fdecea;
+    color: #c0392b;
+}
+
+.etiqueta-estado {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.estado-pendiente { background-color: #fdf3e0; color: #b9770e; }
+.estado-enviado { background-color: #eaf2fb; color: #2471a3; }
+.estado-entregado { background-color: #eafaf1; color: #1e8449; }
+.estado-cancelado { background-color: #fdecea; color: #c0392b; }
+
+.btn-nuevo {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    background-color: var(--rosa-oscuro);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .hero, .sobre-nosotros, .layout-tienda, .detalle-producto, .layout-panel {
+        grid-template-columns: 1fr;
+    }
+    .beneficios, .tarjetas-resumen {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .navbar, .seccion, .cta-personalizados, footer {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
+
+/* =========================================================
+   INSIGNIAS DE ÍCONOS (beneficios, misión/visión)
+   ========================================================= */
+
+.icono-insignia {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: var(--rosa-clarito);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px auto;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.icono-insignia img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+.icono-insignia span {
+    font-size: 1.7em;
+    line-height: 1;
+}
+
+.beneficio:hover .icono-insignia {
+    transform: translateY(-4px) scale(1.06);
+    background-color: var(--rosa);
+}
+
+/* =========================================================
+   GALERÍA / CARRUSEL DE PRODUCTO (multi-imagen)
+   ========================================================= */
+
+.galeria-producto {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(135deg, var(--rosa-clarito), #eccbdb);
+    user-select: none;
+}
+
+.galeria-viewport {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.galeria-pista {
+    display: flex;
+    height: 100%;
+    transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.galeria-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.galeria-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.galeria-slide .imagen-producto {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    font-size: 6em;
+}
+
+.galeria-flecha {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: var(--rosa-oscuro);
+    font-size: 1.4em;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.galeria-flecha:hover {
+    background-color: var(--blanco);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.galeria-anterior { left: 14px; }
+.galeria-siguiente { right: 14px; }
+
+.galeria-puntos {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.galeria-punto {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.galeria-punto.activo {
+    background-color: var(--blanco);
+    transform: scale(1.3);
+}
+
+/* =========================================================
+   SELECTOR DE VARIANTES (medida / tamaño) EN LA FICHA DE PRODUCTO
+   ========================================================= */
+
+.selector-variantes {
+    margin-top: 18px;
+}
+
+.selector-variantes > label {
+    margin-top: 0;
+}
+
+.opciones-variante {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.pastilla-variante {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 16px;
+    border: 2px solid var(--borde);
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--marron-suave);
+    margin: 0;
+    transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.pastilla-variante input {
+    display: none;
+}
+
+.pastilla-variante:hover {
+    border-color: var(--rosa);
+}
+
+.pastilla-variante:has(input:checked) {
+    border-color: var(--rosa-oscuro);
+    background-color: var(--rosa-clarito);
+    color: var(--rosa-oscuro);
+}
+
+.pastilla-variante.seleccionada {
+    border-color: var(--rosa-oscuro);
+    background-color: var(--rosa-clarito);
+    color: var(--rosa-oscuro);
+}
+
+/* =========================================================
+   ADMIN — VARIANTES DINÁMICAS EN EL FORMULARIO DE PRODUCTO
+   ========================================================= */
+
+.fila-variante {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 8px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.fila-variante input {
+    margin-top: 0;
+}
+
+.btn-quitar-fila {
+    width: 34px;
+    height: 34px;
+    margin-top: 0;
+    border: none;
+    border-radius: 8px;
+    background-color: #fdecea;
+    color: #c0392b;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn-quitar-fila:hover {
+    background-color: #f8d3ce;
+}
+
+/* =========================================================
+   ADMIN — GALERÍA DE IMÁGENES DEL PRODUCTO (con eliminar)
+   ========================================================= */
+
+.galeria-admin-imagenes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.miniatura-admin {
+    position: relative;
+    width: 90px;
+}
+
+.miniatura-admin img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+.miniatura-eliminar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 4px;
+    font-size: 0.75em;
+    color: #c0392b;
+    cursor: pointer;
+}
+
+.miniatura-eliminar input {
+    width: auto;
+    margin-top: 0;
+}
+
+/* =========================================================
+   TARJETAS CTA — ENCUESTAS / PROVEEDORES / COTIZAR
+   ========================================================= */
+
+.grid-cta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.tarjeta-cta {
+    background-color: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.tarjeta-cta:hover {
+    box-shadow: 0 10px 25px rgba(194, 106, 146, 0.15);
+    transform: translateY(-4px);
+}
+
+.tarjeta-cta-destacada {
+    background-color: var(--marron);
+    border-color: var(--marron);
+}
+
+.tarjeta-cta-destacada h3,
+.tarjeta-cta-destacada .etiqueta-cta {
+    color: var(--blanco);
+}
+
+.tarjeta-cta-destacada p {
+    color: #d9cfc7;
+}
+
+.etiqueta-cta {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.75em;
+    font-weight: 700;
+    color: var(--rosa-oscuro);
+    margin-bottom: 10px;
+}
+
+.tarjeta-cta h3 {
+    font-family: Georgia, serif;
+    margin: 0 0 10px 0;
+    font-size: 1.25em;
+    line-height: 1.3;
+}
+
+.tarjeta-cta p {
+    color: var(--marron-suave);
+    font-size: 0.9em;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin: 0 0 18px 0;
+}
+
+.tarjeta-cta .btn {
+    align-self: flex-start;
+}
+
+.tarjeta-cta-destacada .btn {
+    background-color: var(--rosa-oscuro);
+}
+
+/* =========================================================
+   CALIFICACIÓN POR ESTRELLAS (encuesta)
+   ========================================================= */
+
+.calificacion-estrellas {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 4px;
+    border: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+}
+
+.calificacion-estrellas input {
+    display: none;
+}
+
+.calificacion-estrellas label {
+    display: inline-block;
+    margin: 0;
+    font-weight: 400;
+    font-size: 2.3em;
+    line-height: 1;
+    color: var(--borde);
+    cursor: pointer;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.calificacion-estrellas input:checked ~ label,
+.calificacion-estrellas label:hover,
+.calificacion-estrellas label:hover ~ label {
+    color: var(--rosa-oscuro);
+}
+
+.calificacion-estrellas label:hover {
+    transform: scale(1.15);
+}
+
+/* =========================================================
+   MAPA DE LA TIENDA FÍSICA
+   ========================================================= */
+
+.mapa-tienda {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(92, 74, 63, 0.1);
+}
+
+.mapa-tienda iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+}
+
+.mapa-info {
+    background-color: var(--rosa-clarito);
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mapa-info h3 {
+    font-family: Georgia, serif;
+    margin: 0 0 10px 0;
+}
+
+.mapa-info p {
+    color: var(--marron-suave);
+    margin: 0 0 18px 0;
+    line-height: 1.6;
+}
+
+.mapa-info .btn-secundario {
+    align-self: flex-start;
+    background-color: var(--blanco);
+}
+
+/* =========================================================
+   SOBRE NOSOTROS — HISTORIA CON IMAGEN
+   ========================================================= */
+
+.historia-con-imagen {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.historia-con-imagen img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(92, 74, 63, 0.15);
+}
+
+.historia-con-imagen p {
+    line-height: 1.8;
+}
+
+/* =========================================================
+   ANIMACIONES DE ENTRADA (al hacer scroll)
+   ========================================================= */
+
+.animar-entrada {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.animar-entrada.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efecto escalonado dentro de secciones en grilla */
+.beneficios .beneficio.visible:nth-child(1) { transition-delay: 0s; }
+.beneficios .beneficio.visible:nth-child(2) { transition-delay: 0.08s; }
+.beneficios .beneficio.visible:nth-child(3) { transition-delay: 0.16s; }
+.beneficios .beneficio.visible:nth-child(4) { transition-delay: 0.24s; }
+
+.grid-cta .tarjeta-cta.visible:nth-child(1) { transition-delay: 0s; }
+.grid-cta .tarjeta-cta.visible:nth-child(2) { transition-delay: 0.1s; }
+.grid-cta .tarjeta-cta.visible:nth-child(3) { transition-delay: 0.2s; }
+
+.grid-productos .tarjeta-producto.visible:nth-child(4n+1) { transition-delay: 0s; }
+.grid-productos .tarjeta-producto.visible:nth-child(4n+2) { transition-delay: 0.07s; }
+.grid-productos .tarjeta-producto.visible:nth-child(4n+3) { transition-delay: 0.14s; }
+.grid-productos .tarjeta-producto.visible:nth-child(4n+4) { transition-delay: 0.21s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .animar-entrada {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* Zoom suave en la imagen del producto al pasar el mouse por la tarjeta */
+.tarjeta-producto .imagen-producto img,
+.tarjeta-producto img.imagen-producto {
+    transition: transform 0.35s ease;
+}
+
+.tarjeta-producto:hover img.imagen-producto {
+    transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+    .grid-cta {
+        grid-template-columns: 1fr;
+    }
+    .mapa-tienda {
+        grid-template-columns: 1fr;
+    }
+    .mapa-tienda iframe {
+        min-height: 260px;
+    }
+    .historia-con-imagen {
+        grid-template-columns: 1fr;
+    }
+    .fila-variante {
+        grid-template-columns: 1fr 1fr;
+    }
+    .fila-variante .btn-quitar-fila {
+        grid-column: span 2;
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   VIDEO DE PRESENTACIÓN (página principal)
+   ========================================================= */
+
+.video-presentacion {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 45px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.video-presentacion-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #000;
+    box-shadow: 0 10px 28px rgba(92, 74, 63, 0.18);
+}
+
+.video-presentacion-media video,
+.video-presentacion-media iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+.video-presentacion-texto h2 {
+    margin: 6px 0 14px 0;
+}
+
+.video-presentacion-texto p {
+    color: var(--marron-suave);
+    line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+    .video-presentacion {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   BLOG — insignia de video en las tarjetas
+   ========================================================= */
+
+.insignia-video {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background-color: var(--rosa-clarito);
+    color: var(--rosa-oscuro);
+    font-weight: 600;
+    font-size: 0.85em;
+}
+
+/* =========================================================
+   BLOG — sección de opiniones / comentarios
+   ========================================================= */
+
+.seccion-opiniones {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 10px 30px 60px 30px;
+}
+
+.lista-comentarios {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 20px 0 30px 0;
+}
+
+.comentario {
+    background-color: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 16px 18px;
+}
+
+.comentario-admin {
+    background-color: var(--rosa-clarito);
+    border-color: var(--rosa);
+}
+
+.comentario-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+}
+
+.comentario-cabecera strong {
+    font-size: 0.95em;
+}
+
+.comentario-fecha {
+    font-size: 0.78em;
+    color: var(--marron-suave);
+    margin-left: auto;
+}
+
+.insignia-admin {
+    font-size: 0.72em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--blanco);
+    background-color: var(--rosa-oscuro);
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.comentario p {
+    margin: 0;
+    color: var(--marron);
+    font-size: 0.92em;
+    line-height: 1.6;
+}
+
+.formulario-comentario {
+    background-color: var(--rosa-clarito);
+    border-radius: 14px;
+    padding: 22px 24px;
+}
+
+.formulario-comentario label {
+    margin-top: 0;
+}
+
+.formulario-comentario label + label {
+    margin-top: 14px;
+}
+
+/* =========================================================
+   BURBUJAS LATERALES — encuestas de Proveedores / Clientes
+   ========================================================= */
+
+.burbujas-laterales {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) translateX(120%);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1), opacity 0.6s ease;
+}
+
+.burbujas-laterales.visible {
+    transform: translateY(-50%) translateX(0);
+    opacity: 1;
+}
+
+.burbuja-lateral {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--rosa-oscuro);
+    color: var(--blanco);
+    text-decoration: none;
+    padding: 12px 18px 12px 14px;
+    border-radius: 30px 0 0 30px;
+    box-shadow: -4px 4px 16px rgba(92, 74, 63, 0.25);
+    font-size: 0.85em;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: padding 0.45s ease, border-radius 0.45s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.burbuja-lateral:hover {
+    background-color: var(--marron);
+    transform: translateX(-4px);
+}
+
+.burbuja-icono {
+    font-size: 1.3em;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.burbuja-texto {
+    display: inline-block;
+    max-width: 200px;
+    opacity: 1;
+    margin-left: 0;
+    transition: max-width 0.45s ease, opacity 0.3s ease, margin 0.45s ease;
+}
+
+/* Estado "recogido": tras unos segundos solo queda el ícono, en forma de círculo */
+.burbujas-laterales.colapsada .burbuja-lateral {
+    padding: 13px;
+    border-radius: 50%;
+    animation: pulso-burbuja 3.5s ease-in-out infinite;
+}
+
+.burbujas-laterales.colapsada .burbuja-texto {
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0;
+}
+
+/* Al pasar el mouse sobre una burbuja recogida, se expande de nuevo mientras dura el hover */
+.burbujas-laterales.colapsada .burbuja-lateral:hover {
+    padding: 12px 18px 12px 14px;
+    border-radius: 30px 0 0 30px;
+    animation: none;
+}
+
+.burbujas-laterales.colapsada .burbuja-lateral:hover .burbuja-texto {
+    max-width: 200px;
+    opacity: 1;
+    margin-left: 2px;
+}
+
+@keyframes pulso-burbuja {
+    0%, 100% { box-shadow: -4px 4px 16px rgba(92, 74, 63, 0.25), 0 0 0 0 rgba(194, 106, 146, 0.45); }
+    50%      { box-shadow: -4px 4px 16px rgba(92, 74, 63, 0.25), 0 0 0 9px rgba(194, 106, 146, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .burbujas-laterales,
+    .burbuja-lateral,
+    .burbuja-texto {
+        transition: none;
+    }
+    .burbujas-laterales.colapsada .burbuja-lateral {
+        animation: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .burbuja-lateral {
+        font-size: 0.78em;
+        padding: 10px 14px 10px 12px;
+    }
+    .burbuja-icono {
+        font-size: 1.15em;
+    }
+}

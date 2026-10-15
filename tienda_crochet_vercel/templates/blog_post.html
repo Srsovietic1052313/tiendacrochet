@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block titulo %}{{ post.titulo }} - Blog{% endblock %}
+
+{% block content %}
+
+<div class="post-blog animar-entrada">
+    <a href="{{ url_for('blog') }}" style="color: var(--rosa-oscuro); font-weight:600; font-size:0.9em;">← Volver al blog</a>
+    <p class="fecha-blog" style="margin-top: 15px;">{{ post.fecha[:10] }} · {{ post.autor }}</p>
+    <h1>{{ post.titulo }}</h1>
+
+    {% if post.video_archivo or post.video_url %}
+    <div class="video-presentacion-media" style="margin: 22px 0;">
+        {% if post.video_archivo %}
+        <video src="{{ url_for('static', filename='video/' + post.video_archivo) }}" controls preload="metadata"></video>
+        {% elif video_plataforma == 'youtube' %}
+        <iframe src="https://www.youtube.com/embed/{{ video_embed_id }}" title="{{ post.titulo }}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen loading="lazy"></iframe>
+        {% elif video_plataforma == 'vimeo' %}
+        <iframe src="https://player.vimeo.com/video/{{ video_embed_id }}" title="{{ post.titulo }}"
+                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        {% else %}
+        <video src="{{ post.video_url }}" controls preload="metadata"></video>
+        {% endif %}
+    </div>
+    {% elif post.imagen %}
+    <img src="{{ url_for('static', filename='img/productos/' + post.imagen) }}" alt="{{ post.titulo }}"
+         style="width:100%; border-radius: 14px; margin: 22px 0; aspect-ratio: 16/9; object-fit: cover;">
+    {% endif %}
+
+    <div class="contenido">{{ post.contenido }}</div>
+</div>
+
+<div class="seccion-opiniones animar-entrada">
+    <div class="seccion-titulo">
+        <div class="subtitulo">Opiniones</div>
+        <h2>Lo que opinan de esta publicación</h2>
+    </div>
+
+    <div class="lista-comentarios">
+        {% for c in comentarios %}
+        <div class="comentario {% if c.es_admin %}comentario-admin{% endif %}">
+            <div class="comentario-cabecera">
+                <strong>{{ c.nombre }}</strong>
+                {% if c.es_admin %}<span class="insignia-admin">Equipo de la tienda</span>{% endif %}
+                <span class="comentario-fecha">{{ c.fecha[:10] }}</span>
+            </div>
+            <p>{{ c.comentario }}</p>
+        </div>
+        {% else %}
+        <p style="color: var(--marron-suave);">Sé la primera persona en dejar tu opinión sobre esta publicación.</p>
+        {% endfor %}
+    </div>
+
+    <form action="{{ url_for('blog_post', id=post.id) }}" method="POST" class="formulario-comentario">
+        {% if session.get('usuario_rol') == 'admin' %}
+        <p style="font-size: 0.85em; color: var(--marron-suave); margin: 0 0 8px 0;">
+            Vas a comentar como <strong>La Tienda del Crochet</strong> 🧡
+        </p>
+        {% else %}
+        <label for="nombre">Tu nombre</label>
+        <input type="text" id="nombre" name="nombre" required>
+        {% endif %}
+
+        <label for="comentario">Tu opinión</label>
+        <textarea id="comentario" name="comentario" placeholder="Cuéntanos qué te pareció..." required></textarea>
+
+        <button type="submit" class="btn btn-pequeno" style="margin-top: 10px;">Publicar opinión</button>
+    </form>
+</div>
+
+{% endblock %}
