@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block titulo %}{{ producto.nombre }} - La Tienda del Crochet{% endblock %}
+
+{% block content %}
+{% set lista_imagenes = imagenes if imagenes else ([{'imagen': producto.imagen}] if producto.imagen else []) %}
+
+<div class="detalle-producto animar-entrada">
+    <div class="galeria-producto" data-autoplay="4500">
+        <div class="galeria-viewport">
+            <div class="galeria-pista">
+                {% for img in lista_imagenes %}
+                <div class="galeria-slide">
+                    <img src="{{ url_for('static', filename='img/productos/' + img.imagen) }}" alt="{{ producto.nombre }} - foto {{ loop.index }}">
+                </div>
+                {% else %}
+                <div class="galeria-slide">
+                    <div class="imagen-producto">🧶</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% if lista_imagenes|length > 1 %}
+        <button type="button" class="galeria-flecha galeria-anterior" aria-label="Imagen anterior">‹</button>
+        <button type="button" class="galeria-flecha galeria-siguiente" aria-label="Imagen siguiente">›</button>
+        <div class="galeria-puntos">
+            {% for img in lista_imagenes %}
+            <button type="button" class="galeria-punto{% if loop.first %} activo{% endif %}" aria-label="Ver foto {{ loop.index }}"></button>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div>
+        <h1>{{ producto.nombre }}</h1>
+
+        {% if variantes %}
+        <p class="precio" id="precio-mostrado">${{ "{:,.0f}".format(variantes[0].precio) }} COP</p>
+        {% else %}
+        <p class="precio" id="precio-mostrado">${{ "{:,.0f}".format(producto.precio) }} COP</p>
+        {% endif %}
+
+        <p style="color: var(--marron-suave); line-height: 1.6;">{{ producto.descripcion }}</p>
+
+        <form id="form-agregar-carrito" action="{{ url_for('carrito_agregar', id=producto.id) }}" method="POST" style="margin-top: 10px; max-width: 320px;">
+
+            {% if variantes %}
+            <div class="selector-variantes">
+                <label>Elige la medida / tamaño</label>
+                <div class="opciones-variante">
+                    {% for v in variantes %}
+                    <label class="pastilla-variante">
+                        <input type="radio" name="variante_id" value="{{ v.id }}"
+                               data-precio="{{ v.precio|int }}" data-stock="{{ v.stock }}" data-medida="{{ v.medida }}"
+                               {% if loop.first %}checked{% endif %}>
+                        <span>{{ v.medida }}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <p style="font-size: 0.9em; color: var(--marron-suave);" id="stock-mostrado">
+                {% if variantes %}
+                    ✓ {{ variantes[0].stock }} disponibles
+                {% elif producto.stock > 0 %}
+                    ✓ {{ producto.stock }} disponibles
+                {% else %}
+                    Agotado por el momento
+                {% endif %}
+            </p>
+
+            {% if producto.stock > 0 or variantes %}
+            <label for="cantidad">Cantidad</label>
+            <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="{{ (variantes[0].stock if variantes else producto.stock) or 99 }}">
+            <button type="submit" class="btn" style="width: 100%; margin-top: 15px;">Agregar al carrito 🛒</button>
+            {% endif %}
+        </form>
+
+        <a href="{{ url_for('tienda') }}" style="display: inline-block; margin-top: 20px; color: var(--rosa-oscuro);">← Volver a la tienda</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block titulo %}Proveedores - Panel admin{% endblock %}
+
+{% block content %}
+
+<div class="layout-panel">
+    {% include 'admin/_sidebar.html' %}
+
+    <div class="panel-contenido">
+        <h1>Proveedores registrados</h1>
+        <p style="color: var(--marron-suave);">
+            Empresas y personas que se registraron desde "Conviértete en nuestro aliado comercial" en la página principal.
+        </p>
+
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Empresa</th>
+                        <th>Contacto</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Productos / servicios</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in registros %}
+                    <tr>
+                        <td>{{ p.empresa }}</td>
+                        <td>{{ p.contacto_nombre }}</td>
+                        <td>{{ p.telefono }}</td>
+                        <td>{{ p.email }}</td>
+                        <td>{{ p.productos_servicios }}</td>
+                        <td>{{ p.fecha[:10] }}</td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="6">Todavía no hay proveedores registrados.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block titulo %}La Tienda del Crochet - Amor tejido a mano{% endblock %}
+
+{% block content %}
+
+<section class="hero animar-entrada">
+    <div>
+        <h1>Amor tejido<br>a mano ♡</h1>
+        <p>Piezas únicas, hechas con dedicación para acompañar tus mejores momentos.</p>
+        <a href="{{ url_for('tienda') }}" class="btn">Descubre la colección →</a>
+    </div>
+    <img src="{{ url_for('static', filename='images/logo1.jpeg') }}" alt="La Tienda del Crochet" class="hero-imagen">
+</section>
+
+<section class="beneficios">
+    <div class="beneficio animar-entrada">
+        <div class="icono-insignia">
+            <img src="{{ url_for('static', filename='images/iconos/hecho-a-mano.png') }}" alt="Hecho a mano">
+        </div>
+        <h3>Hecho a mano</h3>
+        <p>Cada pieza es única y especial.</p>
+    </div>
+    <div class="beneficio animar-entrada">
+        <div class="icono-insignia">
+            <img src="{{ url_for('static', filename='images/iconos/materiales-calidad.png') }}" alt="Materiales de calidad">
+        </div>
+        <h3>Materiales de calidad</h3>
+        <p>Utilizamos hilos premium y sostenibles.</p>
+    </div>
+    <div class="beneficio animar-entrada">
+        <div class="icono-insignia">
+            <img src="{{ url_for('static', filename='images/iconos/personalizados.png') }}" alt="Personalizados">
+        </div>
+        <h3>Personalizados</h3>
+        <p>Creamos piezas únicas para ti.</p>
+    </div>
+    <div class="beneficio animar-entrada">
+        <div class="icono-insignia">
+            <img src="{{ url_for('static', filename='images/iconos/envios-seguros.png') }}" alt="Envíos seguros">
+        </div>
+        <h3>Envíos seguros</h3>
+        <p>Llegamos a todo Colombia.</p>
+    </div>
+</section>
+
+<section class="sobre-nosotros animar-entrada">
+    <img src="{{ url_for('static', filename='images/banner1.jpeg') }}" alt="hero-Imagen" class="hero-image">
+    <div>
+        <div class="subtitulo">Sobre nosotros</div>
+        <h2>Tejemos historias, creamos recuerdos ♡</h2>
+        <p style="color: var(--marron-suave); line-height: 1.6;">
+            En La Tienda del Crochet, cada puntada lleva amor, dedicación y el deseo de hacer tu vida
+            más bonita. Nos especializamos en piezas tejidas a mano, con diseños únicos y materiales
+            de la mejor calidad.
+        </p>
+        <a href="{{ url_for('sobre_nosotros') }}" class="btn" style="margin-top: 10px;">Conócenos más →</a>
+    </div>
+</section>
+
+{% if video.video_archivo or video.video_url %}
+<section class="seccion">
+    <div class="video-presentacion animar-entrada">
+        <div class="video-presentacion-media">
+            {% if video.video_archivo %}
+            <video src="{{ url_for('static', filename='video/' + video.video_archivo) }}" controls preload="metadata"></video>
+            {% elif video_plataforma == 'youtube' %}
+            <iframe src="https://www.youtube.com/embed/{{ video_embed_id }}" title="{{ video.titulo }}"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
+            {% elif video_plataforma == 'vimeo' %}
+            <iframe src="https://player.vimeo.com/video/{{ video_embed_id }}" title="{{ video.titulo }}"
+                    allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            {% else %}
+            <video src="{{ video.video_url }}" controls preload="metadata"></video>
+            {% endif %}
+        </div>
+        <div class="video-presentacion-texto">
+            <div class="subtitulo">Nuestro proceso</div>
+            <h2>{{ video.titulo }}</h2>
+            <p>{{ video.descripcion }}</p>
+            <a href="{{ url_for('blog') }}" class="btn btn-secundario" style="margin-top: 6px; display: inline-block;">Ver más en el blog →</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="seccion">
+    <div class="seccion-titulo animar-entrada">
+        <div class="subtitulo">Queremos escucharte</div>
+        <h2>Contigo mejoramos cada día</h2>
+    </div>
+
+    <div class="grid-cta">
+        <div class="tarjeta-cta animar-entrada">
+            <span class="etiqueta-cta">Clientes 😊</span>
+            <h3>Ayúdanos a mejorar tu experiencia</h3>
+            <p>Queremos conocer tus necesidades y preferencias para ofrecerte un mejor servicio, productos de calidad y promociones pensadas para ti.</p>
+            <a href="{{ url_for('encuesta') }}" class="btn btn-pequeno">Responder encuesta</a>
+        </div>
+        <div class="tarjeta-cta animar-entrada">
+            <span class="etiqueta-cta">Proveedores</span>
+            <h3>Conviértete en nuestro aliado comercial</h3>
+            <p>Comparte la información de tu empresa y los productos o servicios que ofreces. Construyamos juntos una relación comercial sólida.</p>
+            <a href="{{ url_for('proveedores') }}" class="btn btn-pequeno">Registrar proveedor</a>
+        </div>
+        <div class="tarjeta-cta tarjeta-cta-destacada animar-entrada">
+            <span class="etiqueta-cta">¿Tienes un proyecto?</span>
+            <h3>Cotiza con nosotros fácil y rápido</h3>
+            <p>Te ayudamos a encontrar la pieza perfecta para tu presupuesto y ocasión especial.</p>
+            <a href="https://api.whatsapp.com/send/?phone={{ configuracion.whatsapp }}&text=Hola,%20quiero%20cotizar%20un%20proyecto%20personalizado&type=phone_number&app_absent=0"
+               target="_blank" rel="noopener noreferrer" class="btn btn-pequeno">💬 Cotizar ahora</a>
+        </div>
+    </div>
+</section>
+
+<section class="seccion">
+    <div class="seccion-titulo animar-entrada">
+        <div class="subtitulo">Nuestras creaciones</div>
+        <h2>Productos destacados</h2>
+    </div>
+
+    <div class="grid-productos">
+        {% for producto in destacados %}
+        <div class="tarjeta-producto animar-entrada">
+            <a href="{{ url_for('producto_detalle', id=producto.id) }}">
+                {% if producto.portada %}
+                <img src="{{ url_for('static', filename='img/productos/' + producto.portada) }}" class="imagen-producto" alt="{{ producto.nombre }}">
+                {% else %}
+                <div class="imagen-producto">🧶</div>
+                {% endif %}
+            </a>
+            <div class="info-producto">
+                <h3>{{ producto.nombre }}</h3>
+                {% if producto.num_variantes and producto.num_variantes > 0 %}
+                <p class="precio">Desde ${{ "{:,.0f}".format(producto.precio_min_variante) }} COP</p>
+                <a href="{{ url_for('producto_detalle', id=producto.id) }}" class="btn btn-pequeno" style="width: 100%; display:block; text-align:center;">Ver opciones →</a>
+                {% else %}
+                <p class="precio">${{ "{:,.0f}".format(producto.precio) }} COP</p>
+                <form action="{{ url_for('carrito_agregar', id=producto.id) }}" method="POST">
+                    <input type="hidden" name="cantidad" value="1">
+                    <button type="submit" class="btn btn-pequeno" style="width: 100%;">Agregar al carrito</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <p>Todavía no hay productos destacados.</p>
+        {% endfor %}
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{{ url_for('tienda') }}" class="btn btn-secundario">Ver todos los productos →</a>
+    </div>
+</section>
+
+<section class="cta-personalizados animar-entrada">
+    <div>
+        <h2>¿Tienes una idea especial?</h2>
+        <p>Creamos piezas personalizadas para cada ocasión.</p>
+        <a href="{{ url_for('contacto') }}" class="btn">Solicita la tuya →</a>
+    </div>
+    <div style="font-size: 4em;">💗</div>
+</section>
+
+<section class="seccion">
+    <div class="seccion-titulo animar-entrada">
+        <div class="subtitulo">Visítanos</div>
+        <h2>Nuestra tienda física</h2>
+    </div>
+
+    <div class="mapa-tienda animar-entrada">
+        <iframe
+            src="https://www.google.com/maps?q={{ configuracion.mapa_lat }},{{ configuracion.mapa_lng }}&z={{ configuracion.mapa_zoom }}&output=embed"
+            style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de La Tienda del Crochet"></iframe>
+        <div class="mapa-info">
+            <h3>📍 {{ configuracion.direccion }}</h3>
+            <p>Te esperamos con mucho cariño. Si prefieres, también puedes escribirnos antes de venir.</p>
+            <a href="https://www.google.com/maps/dir/?api=1&destination={{ configuracion.mapa_lat }},{{ configuracion.mapa_lng }}"
+               target="_blank" rel="noopener noreferrer" class="btn btn-secundario">Cómo llegar →</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
